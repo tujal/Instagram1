@@ -1,15 +1,14 @@
 <nav class="navbar " style="background-color: #fffc00">
     <div class="container">
-    <div>
-    <h2 class=""> <img src="https://logos-world.net/wp-content/uploads/2020/04/Snapchat-Logo.png" style="width:50px; height:30px" >Snapchat</h2>
+         <div>
+             <h2 class=""> <img src="https://logos-world.net/wp-content/uploads/2020/04/Snapchat-Logo.png" style="width:50px; height:30px" >Snapchat</h2>
         </div>
         <div>
             <% if user_signed_in? %>
-            <div>
-     
-                Logged in as <strong ><%= current_user.email %></strong>.
-                <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary btn-sm rounded-pill" %> 
-                <%= button_to "Logout", destroy_user_session_path,method: :delete, class: "btn btn-danger btn-sm rounded-pill" %>
+            <div class="d-flex ">
+                Logged in as &nbsp;<strong ><%= current_user.email %></strong>&nbsp;
+                <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary btn-sm rounded-pill" %> &nbsp;
+                <%= button_to "Logout", destroy_user_session_path,method: :delete , class: "btn btn-danger btn-sm rounded-pill" %>
             </div>
                 <% else %>
                 <%= link_to "Sign up", new_user_registration_path, class: "navbar-link"  %> 
