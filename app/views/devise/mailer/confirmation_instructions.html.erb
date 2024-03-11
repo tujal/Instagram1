@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: 100vh;
+        // background-color: #fffc00 ;
+        background-image: url("https://f.hellowork.com/blogdumoderateur/2023/05/Chiffres-TikTok-2023.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+     }
+     .child_box{
+        border-radius: 10px;
+        padding: 20px 20px;
+        background-color: white;
+     }
+    </style>
+</head>
+<body>
+    
+<div class="container-fluid box">
+<div class="container w-25 bg-white child_box">
+    <h2>Snapchat confirmation !</h2>
+        <p>Welcome<b> <%= @email %>!</b></p>
+        <p>You can confirm your account email through the link below:</p>
+    <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class:"btn btn-primary btn-sm" %>
+</div>
+</div>
+</body>
+</html>
+
+
+
+

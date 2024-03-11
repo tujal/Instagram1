@@ -1,0 +1,39 @@
+<div class="container-fluid box">
+<div class="container w-25 bg-white child_box">
+<h2>Welcome back!</h2>
+<p class="text-secondary lh-base">log into access your account</p>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, class:"form-control" %>
+    <% resource.errors.full_messages_for(:email).each do | message | %>
+      <small class="text-danger"><%= message %></small>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, class:"form-control" %>
+    <% resource.errors.full_messages_for(:password).each do | message | %>
+      <small class="text-danger"><%= message %></small>
+      <% end %>
+    <div style="text-align: right">
+   <small> <%= link_to "Forgot your password?", new_password_path(resource_name) %></small>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in" ,class:"btn btn-success btn-sm" %>
+  </div>
+  <p class="text-center"> Not a member? <%= link_to "Signup here", new_user_registration_path %></p>
+<% end %>
+</div>
+</div>
