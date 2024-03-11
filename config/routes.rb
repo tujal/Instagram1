@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :users do
       resources :posts
     end
+    get 'users/:id', to: 'users#show', as: 'user_profile'
+    
 end
-  

@@ -71,3 +71,4 @@ end
 gem "devise", "~> 4.9"
 gem 'bootstrap', '~> 5.1.3'
 gem 'letter_opener'
+gem "rqrcode", "~> 2.2"
