@@ -1,0 +1,24 @@
+<%= render "/home/nav" %>
+<div class="container w-25 mt-4">
+    <div class="card" >
+         <% @posts.each do |post| %>
+            <div class="d-flex">
+                <div>
+                <%= image_tag(post.user.profile_image, size:"40x40" ,class:"rounded-circle mt-1") if post.user.profile_image.attached? %>
+                </div>
+                <div>
+                <%= post.user.email %>
+                <small class="text-secondary "> <%= post.location %></small>
+                </div>
+            </div>
+            <%= image_tag(post.image , class:"img-fluid" ) if post.image.attached? %>
+            <div class="mt-1">
+                 <small class="text-secondary ">  <%= time_ago_in_words(3.minutes.from_now) %>Ago</small>
+                <p class="card-text"><%= post.title %></p> 
+            </div>
+            <br>
+            <% end %>
+            </div>
+    </div>
+   
+  </div>  
