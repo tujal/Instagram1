@@ -6,6 +6,7 @@
         <div>
             <% if user_signed_in? %>
             <div class="d-flex ">
+            <div><%= image_tag(current_user.profile_image, size:"40x40",class:"rounded-circle") if current_user.profile_image.attached?  %></div>
                 Logged in as &nbsp;<strong><%= current_user.email %></strong>&nbsp;
                 <div class="btn-group">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
