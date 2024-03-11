@@ -11,14 +11,20 @@
                     <%= post.user.email %>
                     <small class="text-secondary "> <%= post.location %></small>
                 </div>
+                <div class="btn-group dropright">
+                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2311/2311524.png" style="width:25px; height:25px" %>
+                </button>
+                            <div class="dropdown-menu mr-5">
+                                <%= link_to "Show QR" , class:"dropdown-item" %>
+                            </div>
+                 </div>
             </div>
             <%= image_tag(post.image , class:"img-fluid" ) if post.image.attached? %>
             <div class="mt-1">
                  <small class="text-secondary ">  <%= time_ago_in_words(3.minutes.from_now) %>Ago</small>
                 <p class="card-text"><%= post.title %></p> 
             </div>
-    
-
             </div>
             </br>
             <% end %>
