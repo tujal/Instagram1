@@ -1,6 +1,6 @@
 <%= render "home/nav" %>
 <div class="container mt-5 ">
-<div class="rows d-flex bg-white ">
+<div class="rows d-flex bg-white">
     <div class="col-4 p-2">
         <h5><%= image_tag(@post.user.profile_image, size:"20x20",class:"rounded-circle") if @post.user.profile_image.attached?  %><%= @post.user.email %></h5>
          <%= image_tag(@post.image ,size:"400x400" , class:"rounded" ) if @post.image.attached? %>
@@ -38,11 +38,13 @@
                         <% end %>    
             </div>
         <% end %>
+        <div class="w-50">
             <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
                 <%= form.label :comment %>
                 <%= form.text_field :comment, class:"form-control" %>
-                <%= form. submit "Add Comment" ,class:"btn btn-success btn-sm mt-2"%>
+                <%= form. submit "Add Comment" ,class:"btn btn-success btn-sm mt-2 border-0"%>
             <% end %>
+            </div>
     </div>
 </div>
 </div>
