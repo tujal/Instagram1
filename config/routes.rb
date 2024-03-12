@@ -9,6 +9,10 @@ Rails.application.routes.draw do
             resources :comments
         end
       end
+
+      resources :posts do
+        resources :likes
+      end
     get 'users/:id', to: 'users#show', as: 'user_profile'
     
 end
