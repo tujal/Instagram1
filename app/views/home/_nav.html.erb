@@ -7,14 +7,16 @@
             <% if user_signed_in? %>
             <div class="d-flex ">
             <div>
-            <input type="text"><input type="button" value="search">
-            <%=link_to new_user_post_path(current_user) do %>
-                <img src="https://cdn-icons-png.flaticon.com/128/3384/3384379.png", style="width:35px; height:35px">
-            <% end %>
-            <%=link_to new_user_post_path(current_user) do %>
-                <img src="https://cdn-icons-png.flaticon.com/128/589/589708.png", style="width:35px; height:35px">
-            <% end %>
+            <input type="text" , class="form-control">
             </div>
+                <div>
+                <%=link_to new_user_post_path(current_user) do %>
+                    <img src="https://cdn-icons-png.flaticon.com/128/3384/3384379.png", style="width:35px; height:35px">
+                <% end %>
+                <%=link_to new_user_post_path(current_user) do %>
+                    <img src="https://cdn-icons-png.flaticon.com/128/589/589708.png", style="width:35px; height:35px">
+                <% end %>
+                </div>
             &nbsp; &nbsp;
             <div><%= image_tag(current_user.profile_image, size:"40x40",class:"rounded-circle") if current_user.profile_image.attached?  %></div>
                 Logged in as &nbsp;<strong><%= current_user.email %></strong>&nbsp;

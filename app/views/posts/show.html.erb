@@ -2,7 +2,6 @@
 <div class="container mt-5 ">
 <div class="rows d-flex bg-white ">
     <div class="col-4 p-2">
- 
         <h5><%= image_tag(@post.user.profile_image, size:"20x20",class:"rounded-circle") if @post.user.profile_image.attached?  %><%= @post.user.email %></h5>
          <%= image_tag(@post.image ,size:"400x400" , class:"rounded" ) if @post.image.attached? %>
          <div>
@@ -32,7 +31,7 @@
                         <% @post.comments.reverse.each do | comment | %>
                             <%= image_tag(comment.user.profile_image, size:"20x20",class:"rounded-circle") if comment.user.profile_image.attached?  %>  <%= comment.user.email %>
                             <% if comment.user_id == current_user.id %>
-                            <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment) %>  <%= link_to "delete", user_post_comment_path( current_user, @post, comment), method: :delete%>
+                            <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment)%>  <%= link_to "delete", user_post_comment_path( current_user, @post, comment), method: :delete%>
                             <% end %><br>
                             <small class="text-secondary  "> <%= time_ago_in_words(comment.created_at) %>Ago</small><br>
                             <small> <%= comment.comment %></small><br>
