@@ -19,11 +19,14 @@ class CommentsController < ApplicationController
     def update
         @post =Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
-        if @comment.update(comment_params)
-            redirect_to user_post_path( current_user, @post)
-        else
-            render :edit
-        end
+        respond_to do |format|
+            if @comment.update(comment_params)
+              format.turbo_stream
+              format.html { redirect_to user_post_path( current_user, @post)}
+            else
+              format.html { render :edit, status: :unprocessable_entity }
+            end
+          end
     end
 
 

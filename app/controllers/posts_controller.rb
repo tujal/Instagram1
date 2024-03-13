@@ -38,6 +38,12 @@ class PostsController < ApplicationController
         redirect_to root_path 
     end
 
+    def search
+        query = params[:query]
+        @posts = Post.where("location like?", "%#{params[:query]}%")
+        render :index
+    end
+
     private
     def posts_params
         params.require(:post).permit(:title, :image, :location, :user_id)
