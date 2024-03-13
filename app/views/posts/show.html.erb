@@ -19,32 +19,38 @@
          </div>
     </div>
     <div class="col-8">
-         <h3> <%= @post.title %> 
+         <h3> 
+         <div class="d-flex">
+         <%= @post.title %>  &nbsp;
             <% if @post.user_id == current_user.id%>
-            <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-primary btn-sm mt-2" %>
-            <%= link_to "Delete post",  user_post_path(current_user, @post) ,data:{ turbo_method: :delete} ,class:"btn btn-danger btn-sm mt-2" %>
+            <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-primary btn-sm mt-2" %> &nbsp;
+            <%= button_to "Delete post",  user_post_path(@post) ,method: :delete ,class:"btn btn-danger btn-sm mt-2" %>
             <% end %>
+            </div>
          </h3>
-        <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small><br>
+         <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small><br>
+      
         <% if @post.comments.present? %>
-            <div  style= "height:300px; overflow-y: scroll;">
+            <div  style= "height:300px; overflow-y: scroll;" class="d-flex>
                         <% @post.comments.reverse.each do | comment | %>
-                            <%= image_tag(comment.user.profile_image, size:"20x20",class:"rounded-circle") if comment.user.profile_image.attached?  %>  <%= comment.user.email %>
+                            <%= image_tag(comment.user.profile_image, size:"20x20",class:"rounded-circle") if comment.user.profile_image.attached?  %>  <%= comment.user.email %><br>
                             <% if comment.user_id == current_user.id %>
-                            <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment)%>  <%= link_to "delete", user_post_comment_path( current_user, @post, comment), method: :delete%>
-                            <% end %><br>
+                            <div class="d-flex">
+                            <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment)%>  <%= button_to "delete", user_post_comment_path( current_user, @post, comment), method: :delete , class:"btn btn-link p-0"%>
+                            </div>
+                            <% end %>
                             <small class="text-secondary  "> <%= time_ago_in_words(comment.created_at) %>Ago</small><br>
                             <small> <%= comment.comment %></small><br>
                         <% end %>    
             </div>
         <% end %>
         <div class="w-50">
-            <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
-                <%= form.label :comment %>
-                <%= form.text_field :comment, class:"form-control" %>
-                <%= form. submit "Add Comment" ,class:"btn btn-success btn-sm mt-2 border-0"%>
-            <% end %>
-            </div>
+        <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
+            <%= form.label :comment %>
+            <%= form.text_field :comment, class:"form-control" %>
+            <%= form. submit "Add Comment" ,class:"btn btn-success btn-sm mt-2 border-0"%>
+        <% end %>
+        </div>
     </div>
 </div>
 </div>
