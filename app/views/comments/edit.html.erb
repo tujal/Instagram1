@@ -1,3 +1,5 @@
-<%= turbo_frame_tag  @comment do %>
-   <%= render "form" %>
+<%= form_with model: [current_user ,@post ,@comment] do | form | %>
+   <%= form.label :comment %>
+   <%= form.text_field :comment, class:"form-control" %>
+   <%= form. submit "Add Comment" ,class:"btn btn-success btn-sm mt-2"%>
 <% end %>

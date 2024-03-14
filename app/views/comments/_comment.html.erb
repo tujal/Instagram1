@@ -6,7 +6,7 @@
     <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment)%>  <%= button_to "delete", user_post_comment_path( current_user, @post, comment), method: :delete , class:"btn btn-link p-0"%>
     </div>
     <% end %>
-    <small class="text-secondary  "> <%= time_ago_in_words(comment.created_at) %>Ago</small><br>
-    <small> <%= comment.comment %></small><br>
+    <small class="text-secondary"> <%= time_ago_in_words(comment.created_at) %>Ago</small><br>
+    <p> <%= comment.comment %></p><br>
 <% end %>    
 </div>
