@@ -1,0 +1,15 @@
+<%= render "/home/nav" %>
+<div class="container mt-4 w-50 bg-white p-4">
+    <% @users.each do | user | %>
+        <% if user != current_user %>
+            <table class="table text-left">
+                <tr>
+                    <td> <%= image_tag(user.profile_image, size:"45x45", class:"rounded-circle") if user.profile_image.attached? %>  <%= user.email %></td>
+                    <td> <%= link_to "Follow", root_path , class:"btn btn-primary btn-sm " %></td>
+                </tr>
+            </table>
+       <% end %>
+    <% end %> 
+</div>
+
+

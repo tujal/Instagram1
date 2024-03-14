@@ -14,5 +14,7 @@ Rails.application.routes.draw do
         resources :likes
       end
     get 'users/:id', to: 'users#show', as: 'user_profile'
+    get 'users/:id/index', to: 'users#index'
+
     get '/search', to: "posts#search"
 end
