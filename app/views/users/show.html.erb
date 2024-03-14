@@ -1,30 +1,29 @@
 <%= render "home/nav" %>
 <div class="container mt-5 bg-white w-50" style="border-radius: 20px">
-    <%= link_to "edit profile", edit_user_registration_path, class:"btn btn-warning btn-sm " %>
+    
     <div class="rows d-flex">
-        <div class="col-4 pt-4">
-                 <%= image_tag(@user.profile_image, size:"200x200" , class:"rounded-circle") if @user.profile_image.attached? %>
+        <div class="col-4 p-4">
+                 <%= image_tag(@user.profile_image, size:"200x200" , class:"rounded-circle border border-3 border-success ") if @user.profile_image.attached? %>
+                <h4 class="mt-1"> <%= @user.email %></h4>
         </div>
-        <div class="col-8 mt-5  ">
-                 <h2><%= @user.email %></h2>
-        </div>
-    </div>
+        <div class="col-8 d-flex text-center h-50 mt-5">
+            <div class="col-4 ">
+                <h1 > <%= @user.posts.count %></h1>
+                <h4 class="fw-normal"> <%= (@user.posts.count) == 1 ? 'Post' : 'Posts'%></h4>
+            </div>
+            <div class="col-4">
+                <h1> <%= link_to  @user.followers.count , followers_path(@user)%></h1>
+                <h4 class="fw-normal"> <%= (@user.followers.count) == 1 ? 'Follower' : 'Followers'%></h4>
+            </div>
+            <div class="col-4">
+                <h1><%= link_to @user.following.count,  following_path(@user)%></h1>
+                <h4 class="fw-normal"> <%= (@user.following.count) == 1 ? 'Following' : 'Followings'%></h4>
+            </div>
+            
+        </div>  
+     </div>
 </div>
-<div class="col">
-<%= image_tag(@user.profile_image, size:"200x200", class:"rounded-circle") if @user.profile_image.attached? %>
 
-<h3><%= @user.email %></h3>
-</div>
-<div class="col d-flex">
-<div>
-<%= link_to @user.following.count,  following_path(@user)%>
-<p> Following </p>
-</div>
-<div>
-<%= link_to  @user.followers.count , followers_path(@user)%>
-<p> followers</P>
-</div>
-<div>
-third
-</div>
-</div>
+
+
+
