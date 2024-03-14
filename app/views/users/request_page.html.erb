@@ -1,0 +1,16 @@
+<%= render "/home/nav" %>
+<% if @requests.present? %>
+<div class='container bg-white w-25 mt-4'>
+    <table>
+        <% @requests.each do | request | %>
+            <tr>
+                <td> <b><%= image_tag(request.followerable.profile_image, size:"45x45", class:"rounded-circle") if request.followerable.profile_image.attached? %> <%= request.followerable.email %><b></td>
+                <td><%= button_to "Accept", accept_path(request.followerable), class:"btn btn-success btn-sm" %></td>
+                <td><%= button_to "Decline",decline_path(request.followerable), class:"btn btn-danger btn-sm" %></td>
+            </tr>
+        <% end %>
+    <table>
+</div>
+<% else %>
+        <h2 class="text-center mt-4"> There is No request <h2>
+<% end %>

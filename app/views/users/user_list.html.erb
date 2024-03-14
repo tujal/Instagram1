@@ -1,0 +1,22 @@
+<%= render "/home/nav" %>
+<div class="container mt-4 w-50 bg-white p-4">
+    <% @users.each do | user | %>
+        <% if user != current_user || user.following == current_user || user.followers  == current_user %>
+        <table class="table">
+        <tr>
+       <td> <%= image_tag(user.profile_image, size:"45x45", class:"rounded-circle") if user.profile_image.attached? %>  <%= user.email %></td>
+             <td>   <% if current_user.following?(user) %>
+                        <%= button_to "Unfollow", unfollow_path(@user) , class:"btn btn-outline-success btn-sm btn-sm "%>
+                <% elsif current_user.sent_follow_request_to?(user) %>
+                    <%= button_to "Cancel", cancel_path(user) , class:"btn btn-outline-danger btn-sm btn-sm "%>
+                <% else %>
+    
+        
+                    <%= button_to "Follow", follow_path(user) , class:"btn btn-outline-primary btn-sm " %>
+                <% end %>
+        <% end %>
+        </td>
+        <% end %>
+        </tr>
+        </table>
+</div>

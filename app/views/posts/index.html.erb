@@ -1,4 +1,5 @@
 <%= render "/home/nav" %>
+<%= render partial: "/posts/flash" %>
 <div class="container w-25 mt-4">
 <% @posts.reverse.each do |post| %>
     <div class="card" >

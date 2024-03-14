@@ -10,3 +10,21 @@
         </div>
     </div>
 </div>
+<div class="col">
+<%= image_tag(@user.profile_image, size:"200x200", class:"rounded-circle") if @user.profile_image.attached? %>
+
+<h3><%= @user.email %></h3>
+</div>
+<div class="col d-flex">
+<div>
+<%= link_to @user.following.count,  following_path(@user)%>
+<p> Following </p>
+</div>
+<div>
+<%= link_to  @user.followers.count , followers_path(@user)%>
+<p> followers</P>
+</div>
+<div>
+third
+</div>
+</div>

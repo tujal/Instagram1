@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     def create
         @post = current_user.posts.create(posts_params)
         if @post.save
+            flash[:success] = "Post Created Successfully!.."
             redirect_to root_path
         else
             render :new, status: :unprocessable_entity
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
     def update
         @post = current_user.posts.find(params[:id])
         if @post.update(posts_params)
+            flash[:success] = "Post Updated Successfully!.."
             redirect_to root_path
         else
             render :edit, status: :unprocessable_entity
@@ -35,6 +37,7 @@ class PostsController < ApplicationController
     def destroy
         @post = current_user.posts.find(params[:id])
         @post.destroy
+        flash[:danger] = "Post Destroy Successfully!.."
         redirect_to root_path 
     end
 
