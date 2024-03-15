@@ -1,0 +1,11 @@
+<%= render "/home/nav" %>
+<div class="container-fluid">
+<div class="container w-25 bg-white child_box mt-5">
+<%=form_with model: [current_user, @reel] do | form | %>
+    <%= form.label :reel %>
+    <%= form.file_field :video, class: "form-control" %>
+    <%= form.submit  class:"btn btn-outline-success btn-sm mt-3 btn-rounded-pill" %>
+    <%= link_to "Back", root_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
+<% end %>
+</div>
+</div>

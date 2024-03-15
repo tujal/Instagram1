@@ -30,4 +30,8 @@ Rails.application.routes.draw do
     get 'users/:id/followers', to: 'users#followers', as: 'followers'
 
     get '/search', to: "posts#search"
+    resources :users do
+      resources :reels
+      resources :notes
+    end
 end

@@ -1,20 +1,18 @@
 <nav class="navbar bg-white">
     <div class="container">
          <div>
-             <a href="http://127.0.0.1:3000/"> <img src="https://cdn-icons-png.flaticon.com/128/3621/3621435.png" style="width:50px; height:50px" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
+             <a href="http://localhost:3000"> <img src="https://cdn-icons-png.flaticon.com/128/3621/3621435.png" style="width:50px; height:50px" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
         </div>
         <%= render "posts/search" %>
         <div>
             <% if user_signed_in? %>
             <div class="d-flex ">
                 <div>
-                <%=link_to new_user_post_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/5948/5948875.png", style="width:30px; height:30px">
-                <% end %>
+              
                 <%=link_to new_user_post_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161837.png", style="width:30px; height:30px">
                 <% end %>
-                <%=link_to new_user_post_path(current_user) do %>
+                <%=link_to new_user_reel_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/12595/12595880.png", style="width:30px; height:30px">
                 <% end %>
                 <%=link_to new_user_post_path(current_user) do %>
@@ -38,12 +36,13 @@
             </div>
                 Logged in as &nbsp;<strong><%= current_user.email %></strong>&nbsp;
                 <div class="btn-group dropleft">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-danger  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                 </button>
                     <div class="dropdown-menu mt-5">
                     <%= link_to "Profile",  user_profile_path(current_user), class:"dropdown-item" %>
                     <%= link_to "Request",  request_path(current_user), class:"dropdown-item" %>
+                    <%= link_to "Create Notes",     new_user_note_path(current_user), class:"dropdown-item" %>
 
                      <%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %>
                         <div class="dropdown-divider"></div>
@@ -52,8 +51,6 @@
                 </div>
             </div>
                 <% else %>
-                <%= link_to "Sign up", new_user_registration_path, class: "navbar-link"  %> 
-                <%= link_to "Login", new_user_session_path, class: "navbar-link"  %>
             <% end %>
         </div>
     </div>

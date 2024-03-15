@@ -1,0 +1,15 @@
+<%= render "/home/nav" %>
+<div class="container mt-3">
+<% @reels.reverse.each do |reel| %>
+<div class="container  bg-white child_box mb-3 " , style="width:380px">
+
+    <div>
+    <%= video_tag(reel.video ,size:"350x500" ,controls: true) if reel.video.attached? %>&nbsp;
+    <%= image_tag(reel.user.profile_image , size:"40x40" , class:"rounded-circle") if reel.user.profile_image.attached? %> <b><%= reel.user.email %></b><br>
+    <small class="text-secondary"><%= time_ago_in_words(reel.created_at) %>Ago</small>
+    </div>
+ 
+
+</div>
+<% end %>
+</div>
