@@ -4,7 +4,17 @@
         <% if user != current_user || user.following == current_user || user.followers  == current_user %>
         <table class="table ">
         <tr>
-       <td> <%= image_tag(user.profile_image, size:"45x45", class:"rounded-circle") if user.profile_image.attached? %>  <%= user.email %></td>
+        <td> 
+        <% if user.profile_image.attached? %>
+        <%= image_tag(user.profile_image, size:"40x40",class:"rounded-circle") %>  
+        <% else %>
+        <% if user.gender == "male" %>
+            <img src="https://cdn-icons-png.flaticon.com/128/4140/4140077.png", style="width:40px; height:40px" >
+        <% else %>
+            <img src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png", style="width:40px; height:40px" >
+        <% end %> 
+        <% end %>
+        <%= user.email %></td>
              <td>   <% if current_user.following?(user) %>
                         <%= button_to "Unfollow", unfollow_path(@user) , class:"btn btn-outline-success btn-sm btn-sm rounded-pill"%>
                 <% elsif current_user.sent_follow_request_to?(user) %>

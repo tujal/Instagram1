@@ -1,7 +1,7 @@
 <nav class="navbar bg-white">
     <div class="container">
          <div>
-             <a href="http://127.0.0.1:3001/"> <img src="https://cdn-icons-png.flaticon.com/128/3621/3621435.png" style="width:50px; height:50px" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
+             <a href="http://127.0.0.1:3000/"> <img src="https://cdn-icons-png.flaticon.com/128/3621/3621435.png" style="width:50px; height:50px" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
         </div>
         <%= render "posts/search" %>
         <div>
@@ -19,7 +19,17 @@
                 <% end %>
                 </div>
             &nbsp; &nbsp;
-            <div><%= image_tag(current_user.profile_image, size:"40x40",class:"rounded-circle") if current_user.profile_image.attached?  %></div>
+            <div>
+                 <% if current_user.profile_image.attached? %>
+                          <%= image_tag(current_user.profile_image, size:"40x40",class:"rounded-circle") if current_user.profile_image.attached?  %>  
+                <% else %>
+                     <% if current_user.gender == "male" %>
+                            <img src="https://cdn-icons-png.flaticon.com/128/4140/4140077.png", style="width:40px; height:40px" >
+                      <% else %>
+                            <img src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png", style="width:40px; height:40px" >
+                    <% end %> 
+                <% end %>
+            </div>
                 Logged in as &nbsp;<strong><%= current_user.email %></strong>&nbsp;
                 <div class="btn-group dropleft">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

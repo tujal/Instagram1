@@ -5,11 +5,42 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name, class:"form-control" %>
+    <% resource.errors.full_messages_for(:user_name).each do | message | %>
+      <small class="text-danger"><%= message %></small>
+      <% end %>
+  </div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, class:"form-control" %>
     <% resource.errors.full_messages_for(:email).each do | message | %>
       <small class="text-danger"><%= message %></small>
       <% end %>
+  </div>
+    <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, class:"form-control" %>
+    <% resource.errors.full_messages_for(:first_name).each do | message | %>
+      <small class="text-danger"><%= message %></small>
+      <% end %>
+    </div>
+  <div class="field">
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name, class:"form-control" %>
+  <% resource.errors.full_messages_for(:last_name).each do | message | %>
+    <small class="text-danger"><%= message %></small>
+    <% end %>
+  </div>
+  <div class="field">
+  <%= f.label :gender %><br>
+  <%= f.radio_button :gender, "male" %>
+  <%= f.label :gender, "Male" %>
+  <%= f.radio_button :gender, "Female" %>
+  <%= f.label :gender, "Female" %><br>
+  <% resource.errors.full_messages_for(:gender).each do | message | %>
+    <small class="text-danger"><%= message %></small>
+    <% end %>
   </div>
 
   <div class="field">
