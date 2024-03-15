@@ -17,7 +17,7 @@
                         <% end %>
                 </div>
                 <div>
-                    <%= post.user.email %>
+                    <%= link_to  post.user.email, user_profile_path(post.user), class:"text-decoration-none text-dark" %>
                     <small class="text-secondary "> <%= post.location %></small>
                 </div>
                 <div class="btn-group dropright">

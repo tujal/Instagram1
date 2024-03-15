@@ -36,9 +36,9 @@
                     <% end %> 
                 <% end %>
             </div>
-                Logged in as &nbsp;<strong><%= current_user.email %></strong>&nbsp;
+            &nbsp;  Logged in as &nbsp;<strong><%= link_to current_user.email , user_profile_path(current_user), class:"text-decoration-none text-dark"%></strong>&nbsp;
                 <div class="btn-group dropleft">
-                <button type="button" class="btn btn-danger  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-light  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                 </button>
                     <div class="dropdown-menu mt-5">

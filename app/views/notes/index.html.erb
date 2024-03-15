@@ -4,7 +4,7 @@
 <div class="container w-25 bg-white child_box mb-3 ">
 
     <div>
-    <%= image_tag(note.user.profile_image , size:"40x40",class:"rounded-circle") if note.user.profile_image.attached? %>&nbsp; <b><%= note.user.email %></b><br>
+    <%= image_tag(note.user.profile_image , size:"40x40",class:"rounded-circle") if note.user.profile_image.attached? %>&nbsp; <b><%= link_to note.user.email, user_profile_path(note.user) , class:"text-decoration-none text-dark"%></b><br>
     <small class="text-secondary"><%= time_ago_in_words(note.created_at) %>Ago</small>
     </div>
     <%= note.note %>
