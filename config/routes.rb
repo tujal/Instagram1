@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     get '/search', to: "posts#search"
     resources :users do
+      resources :stories
       resources :reels
       resources :notes
     end

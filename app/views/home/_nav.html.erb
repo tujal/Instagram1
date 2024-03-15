@@ -6,22 +6,24 @@
         <%= render "posts/search" %>
         <div>
             <% if user_signed_in? %>
-            <div class="d-flex ">
+            <div class="d-flex">
                 <div>
-              
+                <%=link_to new_user_story_path(current_user) do %>
+                    <img src="https://cdn-icons-png.flaticon.com/128/8898/8898923.png", style="width:30px; height:30px">
+                <% end %>&nbsp; 
                 <%=link_to new_user_post_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161837.png", style="width:30px; height:30px">
-                <% end %>
+                <% end %>&nbsp; 
                 <%=link_to new_user_reel_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/12595/12595880.png", style="width:30px; height:30px">
-                <% end %>
+                <% end %>&nbsp; 
                 <%=link_to new_user_post_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/2550/2550207.png", style="width:30px; height:30px">
-                <% end %>
+                <% end %>&nbsp; 
                 <%=link_to user_list_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/3683/3683218.png", style="width:30px; height:30px">
-                <% end %>
-                </div>
+                <% end %>&nbsp; 
+            </div>
             &nbsp; &nbsp;
             <div>
                  <% if current_user.profile_image.attached? %>
