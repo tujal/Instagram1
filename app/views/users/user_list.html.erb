@@ -3,7 +3,11 @@
     <% @users.each do | user | %>
         <% if user != current_user || user.following == current_user || user.followers  == current_user %>
         <div class="card text-center m-2" style="width:47%">
-        
+            <div class=" d-flex justify-content-end p-1">
+            <%= link_to root_path do %>
+                <img src="https://cdn-icons-png.flaticon.com/128/10728/10728089.png", style="width:30px; height:30px" >
+            <% end %>
+            </div>
         <% if user.profile_image.attached? %>
                  <div class="mt-2">    <%= image_tag(user.profile_image, size:"200x200",class:"rounded-circle") %>  </div>
         <% else %>
@@ -16,11 +20,11 @@
         <div class="card-body ">
           <h6 class="card-title"><%= link_to  user.email,  user_profile_path(user) %></</h6>
           <% if current_user.following?(user) %>
-          <%= button_to "Unfollow", unfollow_path(@user) , class:"btn btn-success mt-3 "%>
+          <%= button_to "Unfollow", unfollow_path(@user) , class:"btn btn-success mt-3 w-75"%>
             <% elsif current_user.sent_follow_request_to?(user) %>
-                <%= button_to "Cancel", cancel_path(user) , class:"btn btn-danger mt-3 "%>
+                <%= button_to "Cancel", cancel_path(user) , class:"btn btn-danger mt-3 w-75 "%>
             <% else %>
-                <%= button_to "Follow", follow_path(user) , class:"btn btn-primary  mt-3" %>
+                <%= button_to "Follow", follow_path(user) , class:"btn btn-primary  mt-3 w-75" %>
             <% end %>     
         </div>
       </div>
