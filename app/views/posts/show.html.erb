@@ -1,27 +1,20 @@
 <%= render "home/nav" %>
-<div class="container mt-4 w-75">
+<div class="container mt-4 w-75 border-rounded-3">
 <div class="rows d-flex bg-white">
-    <div class="col-6 p-2">
+    <div class="col-6 p-3">
         <h5><%= image_tag(@post.user.profile_image, size:"30x30",class:"rounded-circle") if @post.user.profile_image.attached?  %> &nbsp;<%= @post.user.email %></h5>
-         <%= image_tag(@post.image ,size:"490x450" , class:"rounded" ) if @post.image.attached? %>
-         <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small><br>
-         <div>
-         <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-         <% if pre_like %>
-           <%= button_to post_like_path(@post, pre_like), method: :delete, class:"bg-white btn btn-link"  do %>
-            <img src="https://cdn-icons-png.flaticon.com/128/833/833472.png", style="width:30px; height:30px">
-            <% end %>
-         <% else %>
-           <%= button_to post_likes_path(@post), method: :post, class:"bg-white btn btn-link" do %>
-            <img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png", style="width:30px; height:30px">
-            <% end %>
-         <% end %>
-            <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-         </div>
+         <%= image_tag(@post.image ,size:"470x450" , class:"rounded m-2" ) if @post.image.attached? %><br>
+         <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small>
+ 
+
+         <!--------- like section ------>
+     
+
+         <!------end ----->
     </div>
-    <div class="col-6 m-3">
+    <div class="col-6 m-2">
          <h3> 
-         <div class="">
+         <div class="d-flex">
          <%= @post.title %>  &nbsp;
             <% if @post.user_id == current_user.id%>
             <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-outline-primary btn-sm mt-2" %> &nbsp;

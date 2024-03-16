@@ -30,19 +30,11 @@
                  </div>
             </div>
             <%= image_tag(post.image , class:"img-fluid" ) if post.image.attached? %>
-            <div>
-                 <small class="text-secondary ">  <%= time_ago_in_words(post.created_at) %>Ago</small><br>
-                 <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
-                 <% if pre_like %>
-                   <%= button_to post_like_path(post, pre_like), method: :delete, class:"bg-white btn btn-link"  do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/833/833472.png", style="width:30px; height:30px">
-                    <% end %>
-                 <% else %>
-                   <%= button_to post_likes_path(post), method: :post, class:"bg-white btn btn-link" do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png", style="width:30px; height:30px">
-                    <% end %>
-                 <% end %>
-                    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%><br>
+            <div class="m-1">
+                 <small class="text-secondary">  <%= time_ago_in_words(post.created_at) %>Ago</small><br>
+                 <!------------- like section --------->
+
+                 <!------------ like section end ------------->
                 <%= link_to post.title, user_post_path(current_user, post) , class:"text-decoration-none text-dark"%></p> 
             </div>
             </div>
