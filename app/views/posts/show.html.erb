@@ -1,9 +1,9 @@
 <%= render "home/nav" %>
-<div class="container mt-5 ">
+<div class="container mt-4 w-75">
 <div class="rows d-flex bg-white">
-    <div class="col-4 p-2">
-        <h5><%= image_tag(@post.user.profile_image, size:"20x20",class:"rounded-circle") if @post.user.profile_image.attached?  %><%= @post.user.email %></h5>
-         <%= image_tag(@post.image ,size:"400x400" , class:"rounded" ) if @post.image.attached? %>
+    <div class="col-6 p-2">
+        <h5><%= image_tag(@post.user.profile_image, size:"30x30",class:"rounded-circle") if @post.user.profile_image.attached?  %> &nbsp;<%= @post.user.email %></h5>
+         <%= image_tag(@post.image ,size:"490x450" , class:"rounded" ) if @post.image.attached? %>
          <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small><br>
          <div>
          <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
@@ -19,9 +19,9 @@
             <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
          </div>
     </div>
-    <div class="col-8">
+    <div class="col-6 m-3">
          <h3> 
-         <div class="d-flex">
+         <div class="">
          <%= @post.title %>  &nbsp;
             <% if @post.user_id == current_user.id%>
             <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-outline-primary btn-sm mt-2" %> &nbsp;
@@ -36,8 +36,8 @@
         <% end %>
         <div class="w-50">
         <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
-            <%= form.text_field :comment, class:"form-control", placeholder:"Add Your Comment...."%>
-            <%= form. submit "Add Comment" ,class:"btn btn-outline-success btn-sm btn-rounded mt-2"%>
+            <%= form.text_field :comment, class:"form-control rounded-pill", placeholder:"Add Your Comment...."%>
+            <%= form. submit "Add Comment" ,class:"btn btn-success rounded-pill mt-2"%>
         <% end %>
         </div>
     </div>
