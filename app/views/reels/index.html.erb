@@ -1,7 +1,10 @@
 <%= render "/home/nav" %>
 <div class="container mt-3">
+<div class='float-end'>
+    <%= link_to "Create Reels",   new_user_reel_path(current_user), class:"btn btn-primary btn-sm" %>
+</div>
 <% @reels.reverse.each do |reel| %>
-<div class="container  bg-white child_box mb-3 " , style="width:380px">
+    <div class="container  bg-white child_box mb-3 " , style="width:380px">
 
     <div>
     <%= video_tag(reel.video ,size:"350x500" ,controls: true) if reel.video.attached? %>&nbsp;

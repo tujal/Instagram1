@@ -1,5 +1,8 @@
 <%= render "/home/nav" %>
 <div class="container mt-3">
+    <div class='float-end'>
+    <%= link_to "Create Story", new_user_story_path(current_user), class:"btn btn-primary btn-sm" %>
+    </div>
 <% @storys.reverse.each do |story| %>
 <div class="container  bg-white child_box mb-2 " , style="width:380px">
     <div>
