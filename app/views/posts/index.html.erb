@@ -27,7 +27,13 @@
             <div class="m-1">
                  <small class="text-secondary">  <%= time_ago_in_words(post.created_at) %>Ago</small><br>
                  <!------------- like section --------->
-              <%= render partial: 'home/like', locals: { likable: post} %>
+
+                <div class="d-flex" >
+                        <%= render partial: 'home/like', locals: { likable: post} %>
+                         <p class="m-2"> <img src="https://cdn-icons-png.flaticon.com/128/5338/5338282.png", style="width:25px; height:25px"><br>
+                           <%= post.comments.count %>
+                           </p>
+                           </div>
                  <!------------ like section end ------------->
                 <%= link_to post.title, user_post_path(current_user, post) , class:"text-decoration-none text-dark"%></p> 
             </div>
