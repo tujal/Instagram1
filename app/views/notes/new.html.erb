@@ -1,14 +1,14 @@
 <%= render "/home/nav" %>
 <div class="container-fluid">
-<div class="container w-25 bg-white child_box mt-5">
-<%=form_with model: [current_user, @note] do | form | %>
-    <%= form.label :note %>
-    <%= form.text_field :note, class: "form-control" %>
-    <% @note.errors.full_messages_for(:note).each do | message | %>
-        <small class="text-danger"><%= message %></small><br>
-    <% end %>
-    <%= form.submit  class:"btn btn-outline-success btn-sm mt-3 btn-rounded-pill" %>
-    <%= link_to "Back", root_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
-<% end %>
-</div>
+    <div class="container w-25 bg-white child_box mt-5">
+        <%=form_with model: [current_user, @note] do | form | %>
+            <%= form.label :note %>
+            <%= form.text_field :note, class: "form-control" %>
+            <% @note.errors.full_messages_for(:note).each do | message | %>
+                <small class="text-danger"><%= message %></small><br>
+            <% end %>
+            <%= form.submit  class:"btn btn-outline-success btn-sm mt-3 btn-rounded-pill" %>
+            <%= link_to "Back", root_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
+        <% end %>
+    </div>
 </div>

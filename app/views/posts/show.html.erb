@@ -2,14 +2,11 @@
 <div class="container mt-4 w-75 border-rounded-3">
 <div class="rows d-flex bg-white">
     <div class="col-6 p-3">
-        <h5><%= image_tag(@post.user.profile_image, size:"30x30",class:"rounded-circle") if @post.user.profile_image.attached?  %> &nbsp;<%= @post.user.email %></h5>
+        <h5><%= image_tag(@post.user.profile_image, size:"30x30",class:"rounded-circle") if @post.user.profile_image.attached?  %> &nbsp;<%= @post.user.user_name %></h5>
          <%= image_tag(@post.image ,size:"470x450" , class:"rounded m-2" ) if @post.image.attached? %><br>
          <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small>
- 
-
          <!--------- like section ------>
-     
-
+         <%= render partial: 'home/like', locals: { likable: @post} %>
          <!------end ----->
     </div>
     <div class="col-6 m-2">
@@ -17,13 +14,11 @@
          <div class="d-flex">
          <%= @post.title %>  &nbsp;
             <% if @post.user_id == current_user.id%>
-            <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-outline-primary btn-sm mt-2" %> &nbsp;
-            <%= button_to "Delete post",  user_post_path(@post) ,method: :delete ,class:"btn btn-outline-danger btn-sm mt-2" %>
+            <%= link_to "Edit post",  edit_user_post_path(current_user, @post) , class:"btn btn-outline-primary btn-sm mt-2 rounded-pill" %> &nbsp;
+            <%= button_to "Delete post",  user_post_path(@post) ,method: :delete ,class:"btn btn-outline-danger btn-sm mt-2 rounded-pill" %>
             <% end %>
             </div>
          </h3>
-      
-      
         <% if @post.comments.present? %>
             <%= render "/comments/comment" %>
         <% end %>

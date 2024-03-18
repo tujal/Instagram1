@@ -16,24 +16,18 @@
                             <% end %> 
                         <% end %>
                 </div>
+                &nbsp;&nbsp;
                 <div>
-                    <%= link_to  post.user.email, user_profile_path(post.user), class:"text-decoration-none text-dark" %>
+                    <%= link_to  post.user.user_name, user_profile_path(post.user), class:"text-decoration-none text-dark" %><br>
                     <small class="text-secondary "> <%= post.location %></small>
                 </div>
-                <div class="btn-group dropright">
-                        <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://cdn-icons-png.flaticon.com/128/2311/2311524.png" style="width:25px; height:25px" %>
-                        </button>
-                                    <div class="dropdown-menu mr-5">
-                                        <%= link_to "Show QR" ,root_path , class:"dropdown-item" %>
-                                    </div>
-                 </div>
+               
             </div>
             <%= image_tag(post.image , class:"img-fluid" ) if post.image.attached? %>
             <div class="m-1">
                  <small class="text-secondary">  <%= time_ago_in_words(post.created_at) %>Ago</small><br>
                  <!------------- like section --------->
-
+              <%= render partial: 'home/like', locals: { likable: post} %>
                  <!------------ like section end ------------->
                 <%= link_to post.title, user_post_path(current_user, post) , class:"text-decoration-none text-dark"%></p> 
             </div>

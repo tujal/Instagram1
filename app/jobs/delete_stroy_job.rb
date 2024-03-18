@@ -3,6 +3,6 @@ class DeleteStroyJob < ApplicationJob
 
   def perform(story)
     puts "Bye bye story"
-   story.destory
+   story.destroy
   end
 end

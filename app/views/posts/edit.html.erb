@@ -1,15 +1,15 @@
 <%= render "/home/nav" %>
 <div class="container-fluid ">
-<div class="container w-25 bg-white child_box mt-5">
-<%=form_with model: [current_user, @post]  do | form | %>
-    <%= form.label :title %>
-    <%= form.text_field :title , class: "form-control" %>
-    <%= form.label :location %>
-    <%= form.text_field :location , class: "form-control" %>
-    <%= form.label :image %>
-    <%= form.file_field :image, class: "form-control" %>
-    <%= form.submit  class:"btn btn-success btn-sm mt-3 " %>
-    <%= link_to "Back", root_path , class:"btn btn-primary btn-sm mt-3" %>
-<% end %>
-</div>
+    <div class="container w-25 bg-white child_box mt-5">
+        <%=form_with model: [current_user, @post]  do | form | %>
+            <%= form.label :title %>
+            <%= form.text_field :title , class: "form-control" %>
+            <%= form.label :location %>
+            <%= form.text_field :location , class: "form-control" %>
+            <%= form.label :image %>
+            <%= form.file_field :image, class: "form-control" %>
+            <%= form.submit  class:"btn btn-success btn-sm mt-3 " %>
+            <%= link_to "Back", root_path , class:"btn btn-primary btn-sm mt-3" %>
+        <% end %>
+    </div>
 </div>

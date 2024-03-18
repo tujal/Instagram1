@@ -5,10 +5,10 @@
 
     <div>
     <%= video_tag(reel.video ,size:"350x500" ,controls: true) if reel.video.attached? %>&nbsp;
-    <%= image_tag(reel.user.profile_image , size:"40x40" , class:"rounded-circle") if reel.user.profile_image.attached? %> <b><%= link_to reel.user.email, user_profile_path(reel.user), class:"text-decoration-none text-dark" %></b><br>
+    <%= image_tag(reel.user.profile_image , size:"40x40" , class:"rounded-circle") if reel.user.profile_image.attached? %> <b><%= link_to reel.user.user_name, user_profile_path(reel.user), class:"text-decoration-none text-dark" %></b><br>
     <small class="text-secondary"><%= time_ago_in_words(reel.created_at) %>Ago</small>
+    <%= render partial: 'home/like', locals: { likable: reel} %>
     </div>
- 
 
 </div>
 <% end %>

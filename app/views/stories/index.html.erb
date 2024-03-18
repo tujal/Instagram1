@@ -1,15 +1,13 @@
 <%= render "/home/nav" %>
 <div class="container mt-3">
 <% @storys.reverse.each do |story| %>
-<div class="container  bg-white child_box mb-3 " , style="width:380px">
-
+<div class="container  bg-white child_box mb-2 " , style="width:380px">
     <div>
     <%= video_tag(story.story ,size:"350x500" ,controls: true) if story.story.attached? %>&nbsp;
-    <%= image_tag(story.user.profile_image , size:"40x40" , class:"rounded-circle") if story.user.profile_image.attached? %> <b><%= story.user.email %></b><br>
+    <%= image_tag(story.user.profile_image , size:"40x40" , class:"rounded-circle") if story.user.profile_image.attached? %> <b><%= story.user.user_name %></b><br>
     <small class="text-secondary"><%= time_ago_in_words(story.created_at) %>Ago</small>
+    <%= render partial: 'home/like', locals: { likable: story} %>
     </div>
- 
-
 </div>
 <% end %>
 </div>

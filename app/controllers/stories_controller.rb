@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
     def create
         @story = current_user.stories.create(story_params)
         if @story.save
-            DeleteStroyJob.set(wait: 1.minutes).perform_later(@story)
+            DeleteStroyJob.set(wait: 24.hours).perform_later(@story)
             flash[:success] = "Story Created Successfully!.."
             redirect_to   user_stories_path
         else
@@ -18,9 +18,7 @@ class StoriesController < ApplicationController
         end
     end
 
-
     private
-
     def story_params
         params.require(:story).permit(:story)
     end

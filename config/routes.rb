@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :notes
     end
 
+    resources :likes, only: %i[create destroy]
     get 'users/:id', to: 'users#show', as: 'user_profile'
     get 'users/:id/index', to: 'users#index'
     post 'users/:id/follow', to: "users#follow", as: 'follow'
