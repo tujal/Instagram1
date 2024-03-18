@@ -4,7 +4,7 @@
 <% @posts.reverse.each do |post| %>
     <div class="card" >
             <div class="d-flex">
-                <div> 
+                <div > 
                          <% if post.user.profile_image.attached? %>
                          <%= image_tag(post.user.profile_image, size:"40x40",class:"rounded-circle mt-1") %>  
                         <% else %>
@@ -25,9 +25,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/128/10561/10561712.png",  style="width:40px; height:40px"  >
                         </button>
                         <div class="dropdown-menu">
-                                <button type="button" class="btn btn-white" data-toggle="modal" data-target="#qrModal">
-                                        Show QR Code
-                                </button>
+                                <button type="button" class="btn btn-white" data-toggle="modal" data-target="#qrModal"> Show QR Code </button>
                                 <%= link_to 'Download', rails_blob_path(post.image, disposition: "attachment"),  class:"btn btn-link text-decoration-none text-dark" if post.image.attached? %>
                         </div>
                 </div>

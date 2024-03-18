@@ -29,4 +29,56 @@
     border-radius: 10px;
     padding: 20px 20px;
  } 
- 
+
+
+
+  
+ .outer-circle {
+  background-image: linear-gradient( #fccc63 ,#fbad50,#cd486b , #4c68d7);
+  width: 210px;
+  height: 210px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 50%;
+  border-width: 2px;
+  animation: rotateCircle 2s linear infinite;
+  padding: 2px;
+  display: table;
+
+  .inner-circle {
+    background: white;
+    height: 210px;
+    width: 210px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 50%;
+    border-width: 1px;
+    animation: rotateCircle 2s linear infinite reverse;
+    display: table;
+    text-align: center;
+  }
+
+
+}
+
+@keyframes rotateCircle {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
