@@ -2,13 +2,14 @@
 <div class="container-fluid">
 <div class="container w-25 bg-white child_box mt-5">
 <%= form_with model: [current_user, @story] do | form | %>
+  
     <%= form.label :story %>
     <%= form.file_field :story, class: "form-control" %>
     <% @story.errors.full_messages_for(:story).each do | message | %>
         <small class="text-danger"><%= message %></small><br>
         <% end %>
     <%= form.submit  class:"btn btn-outline-success btn-sm mt-3 btn-rounded-pill" %>
-    <%= link_to "Back", user_stories_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
+    <%= link_to "Back",   user_stories_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
 <% end %>
 </div>
 </div>
