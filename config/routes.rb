@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
     resources :likes, only: %i[create destroy]
     get 'users/:id', to: 'users#show', as: 'user_profile'
-    get 'users/:id/index', to: 'users#index'
     post 'users/:id/follow', to: "users#follow", as: 'follow'
     post 'users/:id/unfollow', to: "users#unfollow", as: 'unfollow'
     post 'users/:id/accept', to: "users#accept", as: 'accept'
@@ -26,6 +25,5 @@ Rails.application.routes.draw do
     get 'users/:id/request_page', to: 'users#request_page', as: 'request'
     get 'users/:id/following', to: 'users#following', as: 'following'
     get 'users/:id/followers', to: 'users#followers', as: 'followers'
-    get '/search', to: "posts#search"
-    
+    get '/search', to: "posts#search"   
 end

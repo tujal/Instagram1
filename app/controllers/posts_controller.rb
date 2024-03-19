@@ -44,7 +44,11 @@ class PostsController < ApplicationController
     def search
         query = "%#{params[:query]}%"
         @posts = Post.where("location like?",query).or( Post.where("title like?",query))
-        render :index
+        if @posts.present?
+             render :index
+        else
+            render :search 
+        end
     end
 
     private
