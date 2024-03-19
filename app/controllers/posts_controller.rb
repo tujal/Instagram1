@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     def index
-        @posts = Post.all
+         @posts = Post.all
     end
     def show
         @post = Post.find(params[:id])
@@ -42,8 +42,8 @@ class PostsController < ApplicationController
     end
 
     def search
-        query = params[:query]
-        @posts = Post.where("location like?", "%#{params[:query]}%")
+        query = "%#{params[:query]}%"
+        @posts = Post.where("location like?",query).or( Post.where("title like?",query))
         render :index
     end
 

@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     def follow
       current_user.send_follow_request_to(@user)
       # redirect_to user_list_path(@user)
-    
       # redirect_to profile_path(@user)
     end
   
