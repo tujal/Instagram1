@@ -18,6 +18,13 @@ class StoriesController < ApplicationController
         end
     end
 
+    def destroy
+        @story = current_user.stories.find(params[:id])
+        @story.destroy
+        flash[:danger] = "Story Destory Successfully!"
+        redirect_to user_stories_path
+    end
+
     private
     def story_params
         params.require(:story).permit(:story)

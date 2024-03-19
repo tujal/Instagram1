@@ -16,6 +16,12 @@ class ReelsController < ApplicationController
             render :new, status: :unprocessable_entity
         end
     end
+    def destroy
+        @reel = current_user.reels.find(params[:id])
+        @reel.destroy
+        flash[:danger] = "Reel Destory Successfully!"
+        redirect_to user_reels_path
+    end
 
     private
     def reels_params

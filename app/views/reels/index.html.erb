@@ -1,4 +1,5 @@
 <%= render "/home/nav" %>
+<%= render partial: "/posts/flash" %>
 <div class="container mt-3">
 <div class='float-end'>
     <%= link_to "Create Reels",   new_user_reel_path(current_user), class:"btn btn-primary btn-sm" %>
@@ -8,7 +9,12 @@
 
     <div>
     <%= video_tag(reel.video ,size:"350x500" ,controls: true) if reel.video.attached? %>&nbsp;
-    <%= image_tag(reel.user.profile_image , size:"40x40" , class:"rounded-circle") if reel.user.profile_image.attached? %> <b><%= link_to reel.user.user_name, user_profile_path(reel.user), class:"text-decoration-none text-dark" %></b><br>
+    <div class="d-flex">
+    <%= image_tag(reel.user.profile_image , size:"40x40" , class:"rounded-circle") if reel.user.profile_image.attached? %> &nbsp;&nbsp;<b><%= link_to reel.user.user_name, user_profile_path(reel.user), class:"text-decoration-none text-dark" %></b>
+    <% if current_user.id == reel.user_id %>
+    &nbsp;&nbsp; <%= button_to "Delete",  user_reel_path(current_user, reel), method: :delete, class:"btn btn-danger btn-sm" %>
+    <% end %>
+    </div>
     <small class="text-secondary"><%= time_ago_in_words(reel.created_at) %>Ago</small>
     <%= render partial: 'home/like', locals: { likable: reel} %>
     </div>

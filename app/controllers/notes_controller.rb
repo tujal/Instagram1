@@ -17,6 +17,13 @@ class NotesController < ApplicationController
         end
     end
 
+    def destroy
+        @note = current_user.note
+        @note.delete
+        flash[:danger] = "Note Destory Successfully!"
+        redirect_to user_notes_path
+    end
+
     private
     def notes_params
         params.require(:note).permit(:note)

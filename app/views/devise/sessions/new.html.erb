@@ -5,11 +5,11 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, class:"form-control" %>
-    <% resource.errors.full_messages_for(:email).each do | message | %>
-      <small class="text-danger"><%= message %></small>
-      <% end %>
+     <%= f.label :email_or_username %><br/>
+      <%= f.text_field :login, class:"form-control" %>
+      <% resource.errors.full_messages_for(:login).each do | message | %>
+        <small class="text-danger"><%= message %></small>
+        <% end %>
   </div>
 
   <div class="field">
