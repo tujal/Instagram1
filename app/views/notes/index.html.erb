@@ -7,13 +7,14 @@
     <% @notes.reverse.each do |note| %>
         <div class="container w-25 bg-white child_box mb-3 ">
             <div class="d-flex">
-                          <%= image_tag(note.user.profile_image , size:"40x40",class:"rounded-circle") if note.user.profile_image.attached? %>&nbsp; <b><%= link_to note.user.user_name, user_profile_path(note.user) , class:"text-decoration-none text-dark"%></b>  &nbsp;
+                          <%= image_tag(note.user.profile_image , size:"40x40",class:"rounded-circle") if note.user.profile_image.attached? %>&nbsp; <b class="pt-1"><%= link_to note.user.user_name, user_profile_path(note.user) , class:"text-decoration-none text-dark"%></b>  &nbsp;
                 <% if current_user.id == note.user_id %>
                          <%= button_to "Delete",  user_note_path(current_user, note) ,method: :delete, class:"btn btn-danger btn-sm"%>
                 <% end %>
             </div>
             <small class="text-secondary"><%= time_ago_in_words(note.created_at) %>Ago</small><br>
                 <%= note.note %>
+                <%= content_with_emoji(note.note) %>
                 <%= render partial: 'home/like', locals: { likable: note} %>
         </div>
     <% end %>
