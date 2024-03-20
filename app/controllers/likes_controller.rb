@@ -13,4 +13,5 @@ def create
   def like_params
    params.require(:like).permit(:likable_id, :likable_type)
   end
+  
 end
