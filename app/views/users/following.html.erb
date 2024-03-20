@@ -20,8 +20,6 @@
                 <% elsif current_user.sent_follow_request_to?(user) %>
                     <%= button_to "Cancel", cancel_path(user) , class:"btn btn-outline-danger btn-sm btn-sm rounded-pill"%>
                 <% else %>
-    
-        
                     <%= button_to "Follow", follow_path(user) , class:"btn btn-outline-primary btn-sm rounded-pill" %>
                 <% end %>
         <% end %>
