@@ -8,7 +8,7 @@
             <% if user_signed_in? %>
             <div class="d-flex">
                 <div>
-                <%=link_to   user_stories_path(current_user) do %>
+                <%=link_to user_stories_path(current_user) do %>
                     <img src="https://cdn-icons-png.flaticon.com/128/8898/8898923.png", style="width:30px; height:30px">
                 <% end %>&nbsp; 
                 <%=link_to new_user_post_path(current_user) do %>

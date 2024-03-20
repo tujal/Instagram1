@@ -7,6 +7,6 @@
 <% else %>
   <%= button_to like_path(like), method: :delete, class:"bg-white btn btn-link", remote: true, data: { turbo: "false" } do %>
             <img src="https://cdn-icons-png.flaticon.com/128/833/833472.png", style="width:25px; height:25px"><br>
-            <%= likable.likes.count %>
+            <%= likable.likes.count%>
    <% end %>
 <% end %>

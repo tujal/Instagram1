@@ -27,12 +27,7 @@
         <% if @post.comments.present? %>
             <%= render "/comments/comment" %>
         <% end %>
-        <div class="w-50">
-        <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
-            <%= form.text_field :comment, class:"form-control rounded-pill", placeholder:"Add Your Comment...."%>
-            <%= form. submit "Add Comment" ,class:"btn btn-success rounded-pill mt-2"%>
-        <% end %>
-        </div>
+        <%= render "/comments/form" %>
     </div>
 </div>
 </div>
