@@ -4,7 +4,7 @@
 <%= form_with model: [current_user, @story] do | form | %>
   
     <%= form.label :story %>
-    <%= form.file_field :story, class: "form-control" %>
+    <%= form.file_field :story, class: "form-control"%>
     <% @story.errors.full_messages_for(:story).each do | message | %>
         <small class="text-danger"><%= message %></small><br>
         <% end %>

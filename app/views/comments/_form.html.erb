@@ -1,6 +1,6 @@
 <div class="w-50">
         <%= form_with model: [current_user ,@post ,Comment.new] do | form | %>
-            <%= form.text_field :comment, class:"form-control rounded-pill", placeholder:"Add Your Comment...."%>
+            <%= form.text_field :comment, class:"form-control rounded-pill", placeholder:"Add Your Comment....", required: true%>
             <%= form. submit "Add Comment" ,class:"btn btn-success rounded-pill mt-2"%>
         <% end %>
 </div>
