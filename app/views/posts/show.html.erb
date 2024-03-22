@@ -23,11 +23,26 @@
             <%= button_to "Delete post",  user_post_path(@post) ,method: :delete ,class:"btn btn-outline-danger btn-sm mt-2 rounded-pill" %>
             <% end %>
             </div>
-         </h3>
-        <% if @post.comments.present? %>
+         </h3>   
+         <% if @post.comments.present? %>
             <%= render "/comments/comment" %>
         <% end %>
+     
         <%= render "/comments/form" %>
     </div>
 </div>
 </div>
+
+
+<script>
+document.addEventListener('turbo:load', function () {
+  document.querySelectorAll('.delete-comment').forEach(function (button) {
+    button.addEventListener('ajax:success', function () {
+      const commentId = this.dataset.commentId;
+      const commentElement = document.getElementById('comment_' + commentId);
+      commentElement.remove();
+    });
+  });
+});
+
+</script>
