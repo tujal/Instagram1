@@ -5,14 +5,14 @@
 <div class="rows d-flex justify-content-around">
   <div class="col-5">
     <%= f.label :user_name %><br />
-      <%= f.text_field :user_name, class:"form-control" %>
+      <%= f.text_field :user_name, class:"form-control" , disabled: true %>
       <% resource.errors.full_messages_for(:user_name).each do | message | %>
         <small class="text-danger"><%= message %></small>
       <% end %>
   </div>
   <div class="col-5">
   <%= f.label :email %><br />
-  <%= f.email_field :email, class:"form-control" %>
+  <%= f.email_field :email, class:"form-control", disabled: true %>
   </div>
 </div><br>
 
