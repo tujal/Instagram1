@@ -1,5 +1,4 @@
 class ReelsController < ApplicationController
-
     def index
         @reels = Reel.all
     end
@@ -10,7 +9,7 @@ class ReelsController < ApplicationController
     def create
         @reel = current_user.reels.create(reels_params)
         if @reel.save
-            flash[:success] = "reel Created Successfully!.."
+            flash[:success] = "Reel Created Successfully!.."
             redirect_to user_reels_path
         else
             render :new, status: :unprocessable_entity
@@ -18,9 +17,11 @@ class ReelsController < ApplicationController
     end
     def destroy
         @reel = current_user.reels.find(params[:id])
-        @reel.destroy
-        flash[:danger] = "Reel Destory Successfully!"
-        redirect_to user_reels_path
+        @reel.delete
+        respond_to do |format|
+            format.turbo_stream { render turbo_stream: turbo_stream.remove("reel_#{@reel.id}")}
+            format.html {  redirect_to user_reels_path, flash[:danger] = "Reel Destory Successfully!" }
+      end
     end
 
     private

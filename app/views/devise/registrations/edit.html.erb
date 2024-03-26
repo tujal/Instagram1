@@ -66,7 +66,19 @@
     <%= f.text_area :bio, class:"form-control" %> 
   </div>
   
-</div><br>
+</div>
+
+<div class="rows d-flex justify-content-around">
+<div class="col-3">
+<b>Do you want to make private account?</b><br><%= f.check_box :private %> <%= f.label :private %>
+</div>
+<div class="col-4">
+</div>
+<div class="col-2">
+</div>
+
+</div>
+<br>
 <div class="actions pt-2">
 <%= f.submit "Update" , class:"btn btn-outline-success btn-sm", style:"width:200px"%>
 <%= link_to "Back", root_path, class:"btn btn-primary btn-sm",  style:"width:100px" %>

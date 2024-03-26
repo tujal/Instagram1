@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
     def create
         @post = current_user.posts.create(posts_params)
+             @post.name = current_user.user_name 
         if @post.save
             flash[:success] = "Post Created Successfully!.."
             redirect_to root_path
@@ -43,7 +44,7 @@ class PostsController < ApplicationController
 
     def search
         query = "%#{params[:query]}%"
-        @posts = Post.where("location like?",query).or( Post.where("title like?",query))
+        @posts = Post.where("location like?",query).or( Post.where("title like?",query)).or( Post.where("name like?",query))
         if @posts.present?
              render :index
         else
@@ -53,6 +54,6 @@ class PostsController < ApplicationController
 
     private
     def posts_params
-        params.require(:post).permit(:title, :image, :location, :user_id, :qrcode)
+        params.require(:post).permit(:title, :image, :location, :user_id, :qrcode, :name)
     end
 end

@@ -48,10 +48,11 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, class:"form-control" %>
+    <%= f.password_field :password, class:"form-control", id:"myInput" %>
     <% resource.errors.full_messages_for(:password).each do | message | %>
       <small class="text-danger"><%= message %></small>
       <% end %>
+      <input type="checkbox" onlick="myFunction()" > show password
   </div>
 
   <div class="field">
@@ -69,3 +70,14 @@
 <% end %>
 </div>
 </div>
+
+<script>
+function myFunction(){
+  var x = document.getElementById("myInput");
+  if (x.type === "password"){
+    x.type = "text";
+  }else{
+    x.type = "password";
+  }
+}
+</script>

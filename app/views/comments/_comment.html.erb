@@ -1,8 +1,7 @@
 <% if @post.comments.present? %>
-<div style= "height:500px; overflow-y: scroll;" >
+<div style= "height:300px; overflow-y: scroll;" >
 <% @post.comments.reverse.each do | comment | %>
 <div id="<%= dom_id comment %>">
-
         <%= image_tag(comment.user.profile_image, size:"20x20",class:"rounded-circle") if comment.user.profile_image.attached?  %>  <%= comment.user.user_name %><br>
         <% if comment.user_id == current_user.id %>
             <div class="d-flex">
