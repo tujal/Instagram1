@@ -3,7 +3,7 @@
     <div class="container w-25 bg-white child_box mt-5">
         <%=form_with model: [current_user, @note] do | form | %>
             <%= form.label :note %>
-            <%= form.text_field :note, class: "form-control" %>
+            <%= form.text_area :note, class: "form-control h-auto" %>
             <% @note.errors.full_messages_for(:note).each do | message | %>
                 <small class="text-danger"><%= message %></small><br>
             <% end %>
