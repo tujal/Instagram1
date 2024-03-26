@@ -4,7 +4,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes , as: :likable
   has_many :comments, dependent: :destroy
-  validates :title, :location, :image, presence: true
+  validates :title, :location, presence: true
+  validate :check_image_type
   before_commit :generate_qrcode, on: :create
   def generate_qrcode
     # Get the host
@@ -36,5 +37,16 @@ class Post < ApplicationRecord
       filename: "qrcode.png",
       content_type: "image/png",
     )
+  end
+
+  private
+  def check_image_type
+      if image.attached?
+          if image.content_type == "application/pdf"
+              errors.add(:image , "Plz upload jpeg, png, jpg, mp4file ")
+          end
+      else
+          errors.add(:image, "can't be blank")
+      end
   end
 end

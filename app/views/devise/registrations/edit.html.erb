@@ -49,17 +49,23 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  <div class="col-5">
-  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div class="col-3">
+  <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control"%>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> characters minimum</em>
+      <i>(leave blank if you don't want to change it)</i><br />
     <% end %>
   </div>
-  <div class="col-5">
+  <div class="col-3">
   <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %> 
   </div>
+  <div class="col-3">
+  <%= f.label :bio %><br />
+    <%= f.text_area :bio, class:"form-control" %> 
+  </div>
+  
 </div><br>
 <div class="actions pt-2">
 <%= f.submit "Update" , class:"btn btn-outline-success btn-sm", style:"width:200px"%>

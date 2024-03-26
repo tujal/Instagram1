@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_writer :login
+  followability
   PASSWORD_REQUIREMENTS = /\A 
   (?=.{8,})
   (?=.*\d)
@@ -6,9 +8,7 @@ class User < ApplicationRecord
   (?=.*[A-Z])
   (?=.*[[:^alnum:]])
   /x
-  validates :password,format: PASSWORD_REQUIREMENTS
-  attr_writer :login
-  followability
+  validates :password,format: PASSWORD_REQUIREMENTS, on: :account_setup
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 

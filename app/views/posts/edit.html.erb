@@ -7,7 +7,7 @@
             <%= form.label :location %>
             <%= form.text_field :location , class: "form-control" %>
             <%= form.label :image %>
-            <%= form.file_field :image, class: "form-control" %>
+            <%= form.file_field :image, class: "form-control", disabled: true%>
             <%= form.submit  class:"btn btn-success btn-sm mt-3 " %>
             <%= link_to "Back", root_path , class:"btn btn-primary btn-sm mt-3" %>
         <% end %>
