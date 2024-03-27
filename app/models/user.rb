@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :reels, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :groups, dependent: :destroy
+  has_many :messages, dependent: :destroy
   def unfollow(user)
     followerable_relationships.where(followable_id: user.id).destroy_all
   end

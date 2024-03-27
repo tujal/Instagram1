@@ -1,0 +1,25 @@
+<%= render "/home/nav" %>
+<div class="container-fluid">
+    <div class="container w-25 bg-white child_box mt-5">
+        <%=form_with model: [current_user, @group] do | form | %>
+            <%= form.label :name %>
+            <%= form.text_field :name , class: "form-control" %>
+            <% @group.errors.full_messages_for(:name).each do | message | %>
+                <small class="text-danger"><%= message %></small><br>
+            <% end %>
+         
+            <%= form.label :group_image %>
+            <%= form.file_field :group_image , class: "form-control" %>
+            <% @group.errors.full_messages_for(:group_image).each do | message | %>
+                <small class="text-danger"><%= message %></small><br>
+            <% end %>
+
+            <%= form.label :bio %>
+            <%= form.text_area :bio , class: "form-control" %>
+       
+   
+            <%= form.submit  class:"btn btn-outline-success btn-sm mt-3 btn-rounded-pill" %>
+            <%= link_to "Back", user_groups_path , class:"btn btn-outline-primary btn-sm btn-rounded-pill mt-3" %>
+        <% end %>
+    </div>
+</div>

@@ -9,9 +9,16 @@ Rails.application.routes.draw do
     end
 
     resources :users do
+      resources :groups do
+          resources :messages
+      end
+    end
+
+    resources :users do
       resources :stories
       resources :reels
       resources :notes
+      resources :groups
     end
 
     resources :likes, only: %i[create destroy]

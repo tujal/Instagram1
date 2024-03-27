@@ -1,0 +1,8 @@
+<div class="container w-75">
+        <%= form_with model: [current_user ,@group ,Message.new] do | form | %>
+            <div class=" d-flex">
+            <%= form.text_field :message, class:"form-control rounded-pill w-75", placeholder:"Message...", required: true%>
+             <%= form. submit "Send" ,class:"btn btn-success rounded-pill w-25"%>
+             </div>
+        <% end %>
+</div>

@@ -1,0 +1,16 @@
+<%= render "/home/nav" %>
+<div class="mt-2 container">
+<%= link_to "Create group", new_user_group_path(current_user) , class:"btn btn-primary btn-sm float-end"%>
+</div>
+<div class="container mt-4 bg-white w-50">
+<% @groups.each do |group| %>
+    <div class="rows d-flex text-center p-2">
+    <div class="col-6">
+        <h5>  <%= group.name %></h5>
+    </div>
+    <div class="col-6">
+    <%= link_to "Chat",  user_group_path(current_user, group), class:"btn btn-outline-success btn-sm btn rounded-pill w-25" %>
+    </div>
+    </div>
+<% end %>
+</div>

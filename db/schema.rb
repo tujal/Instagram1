@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_26_113826) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_27_095115) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +61,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_113826) do
     t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "bio"
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.string "likable_type", null: false
     t.integer "likable_id", null: false
@@ -69,6 +78,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_113826) do
     t.datetime "updated_at", null: false
     t.index ["likable_type", "likable_id"], name: "index_likes_on_likable"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "message"
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -134,7 +153,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_113826) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "groups", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "users"
   add_foreign_key "notes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "reels", "users"

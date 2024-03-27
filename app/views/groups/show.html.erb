@@ -1,0 +1,26 @@
+<%= render "/home/nav" %>
+<div class="container-fluid mt-2 bg-white w-75 rounded">
+    <% if @group.group_image.attached? %>
+             <h5><%= image_tag(@group.group_image, size:"70x70" ,class:"rounded-pill")  if @group.group_image.attached? %><%= @group.name %></h5>
+    <% else %>
+             <h5><img src="https://cdn-icons-png.flaticon.com/128/3772/3772127.png", style="width:70px; height:70px" ><%= @group.name %></h5>
+    <% end %>
+    <div class="container bg-info mb-2 rounded", style="height:480px; overflow-y: scroll;">
+             <br>
+        <% @group.messages.each do |message| %>
+          <div class="row <%= current_user.id == message.user.id ? 'justify-content-end' : 'justify-content-start' %>">
+                <div class="col-6">
+                    <div class="bg-white rounded-pill p-3 ">
+                        <b><%= image_tag(message.user.profile_image , size:"20x20", class:"rounded-pill") if message.user.profile_image.attached? %><%= message.user.user_name %></b><br>
+                                <%= message.message %>
+                        <small class="float-end"><%= (message.created_at.strftime("%I:%M %p")) %></small>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <% end %>
+    </div>
+    <%= render "form" %>
+    <br>
+</div>
+
