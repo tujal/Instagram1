@@ -34,13 +34,12 @@
                     <div class="col-6">
                         <div class="bg-white rounded-pill p-3 ">
                             <b><%= image_tag(message.user.profile_image , size:"30x30", class:"rounded-pill") if message.user.profile_image.attached? %><%= message.user.user_name %>
-                            <% if  current_user.id == message.user.id %>
-                            <%= link_to "delete", user_group_message_path( current_user, @group, message), data:{ turbo_method: :delete} %>
-                            <% end %>
-                            </b>
-                            <br>
-                                    <%= message.message %>
-                            <small class="float-end"><%= (message.created_at.localtime.strftime("%I:%M %p")) %></small>
+                                <% if  current_user.id == message.user.id %>
+                                    <%= link_to "delete", user_group_message_path( current_user, @group, message), data:{ turbo_method: :delete} %>
+                                <% end %>
+                            </b><br>
+                            <%= message.message %>
+                            <small class="float-end"><%= message.created_at.localtime.strftime("%I:%M %p") %></small>
                         </div>
                     </div>
                 </div>
