@@ -1,30 +1,55 @@
 <%= render "/home/nav" %>
-<div class="container-fluid mt-2 bg-white w-75 rounded">
-    <% if @group.group_image.attached? %>
-             <h5><%= image_tag(@group.group_image, size:"70x70" ,class:"rounded-pill")  if @group.group_image.attached? %><%= @group.name %></h5>
-    <% else %>
-             <h5><img src="https://cdn-icons-png.flaticon.com/128/3772/3772127.png", style="width:70px; height:70px" ><%= @group.name %></h5>
-    <% end %>
-    <div class="container bg-warning mb-2 rounded", style="height:480px; overflow-y: scroll;">
-             <br>
-        <% @group.messages.each do |message| %>
-          <div class="row <%= current_user.id == message.user.id ? 'justify-content-end' : 'justify-content-start' %>">
-                <div class="col-6">
-                    <div class="bg-white rounded-pill p-3 ">
-                        <b><%= image_tag(message.user.profile_image , size:"30x30", class:"rounded-pill") if message.user.profile_image.attached? %><%= message.user.user_name %></b>
-                        <% if  current_user.id == message.user.id %>
-                        <small><%= link_to "delete", root_path %></small>
+<div class="container-fluid">
+    <div class="row",  style="height:650px">
+        <div class="col-3">
+            <div class=" text-center mt-5 ",style="height:650px">
+                    <div>
+                        <% if @group.group_image.attached? %>
+                                <%= image_tag(@group.group_image, size:"200x200" ,class:"rounded-pill")  if @group.group_image.attached? %>
+                        <% else %>
+                                <img src="https://cdn-icons-png.flaticon.com/128/3772/3772127.png", style="width:200px; height:200px" >
                         <% end %>
-                        <br>
-                                <%= message.message %>
-                        <small class="float-end"><%= (message.created_at.strftime("%I:%M %p")) %></small>
+                    </div>
+                    <div class="card-body">
+                            <h5 class="card-title"><%= @group.name %></h5>
+                            <p class="card-text"><%= @group.bio %></p>
+                            <div class="d-flex justify-content-center">
+                                <% if @group.user_id == current_user.id %>
+                                    <%= link_to "Edit Group", edit_user_group_path(current_user, @group), class:"btn btn-primary btn-sm" %> &nbsp;<%= button_to "Delete Group",  user_group_path( @group) , method: :delete, class:"btn btn-danger btn-sm" %>
+                                <% end %>
+                            </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-9 bg-light">
+        <div class="container-fluid mt-2 bg-white rounded">
+            <div class=" d-flex justify-content-end p-1">
+                    <%= link_to user_groups_path do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/10728/10728089.png", style="width:30px; height:30px" >
+                    <% end %>
+            </div>
+        <div class="container mb-2 rounded mt-5", style="height:480px; overflow-y: scroll; background-image: linear-gradient(to bottom right, pink, red, pink);"><br>  
+            <% @group.messages.each do |message| %>
+              <div class="row <%= current_user.id == message.user.id ? 'justify-content-end' : 'justify-content-start' %>">
+                    <div class="col-6">
+                        <div class="bg-white rounded-pill p-3 ">
+                            <b><%= image_tag(message.user.profile_image , size:"30x30", class:"rounded-pill") if message.user.profile_image.attached? %><%= message.user.user_name %>
+                            <% if  current_user.id == message.user.id %>
+                            <%= link_to "delete", user_group_message_path( current_user, @group, message), data:{ turbo_method: :delete} %>
+                            <% end %>
+                            </b>
+                            <br>
+                                    <%= message.message %>
+                            <small class="float-end"><%= (message.created_at.localtime.strftime("%I:%M %p")) %></small>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-        <% end %>
+                <br>
+            <% end %>
+        </div>
+        <%= render "form" %>
+        <br>
     </div>
-    <%= render "form" %>
-    <br>
+        </div>
+    </div>
 </div>
-
