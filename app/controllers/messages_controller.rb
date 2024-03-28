@@ -3,10 +3,13 @@ class MessagesController < ApplicationController
         @group =Group.find(params[:group_id])
         @group = @group.messages.create(messages_params)
         @group.user = current_user
-        if @group.save
-            redirect_to user_group_path( current_user, @group)
-        else
-            render 'groups/show'
+        respond_to do | format|
+            if @group.save
+                format.turbo_stream
+                format.html{ redirect_to user_group_path( current_user, @group)}
+            else
+                format.html {render 'groups/show'}
+            end
         end
     end
 
