@@ -1,40 +1,49 @@
 <nav class="navbar bg-white">
     <div class="container">
          <div>
-             <a href="http://localhost:3000"> <%= image_tag("holi.png", size:"60x60") %> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
+             <a href="http://localhost:3000"> <%= image_tag("insta111.png", size:"45x45") %><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVbi1SFIb9MQDGjq6xHhu7Qs41_H3FKRpLUvBH3kcgcw&s" style="width:200px; height:60px"></a>
         </div>
          <%= render "posts/search" %>
         <div>
             <% if user_signed_in? %>
             <div class="d-flex">
-                <div>
-                <%=link_to user_stories_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/8898/8898923.png", style="width:30px; height:30px">
-                <% end %>&nbsp; 
-                <%=link_to new_user_post_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/3161/3161837.png", style="width:30px; height:30px">
-                <% end %>&nbsp; 
-                <%=link_to   user_reels_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/12595/12595880.png", style="width:30px; height:30px">
-                <% end %>&nbsp; 
-                <%=link_to user_groups_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/3721/3721935.png", style="width:30px; height:30px">
-                <% end %>&nbsp; 
-                <%=link_to user_list_path(current_user) do %>
-                    <img src="https://cdn-icons-png.flaticon.com/128/3683/3683218.png", style="width:30px; height:30px">
-                <% end %>&nbsp; 
-            </div>
-            &nbsp; &nbsp;
+                <div class='d-flex p-1'>
+                <span class="p-1">
+                    <%=link_to user_stories_path(current_user) do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/8898/8898923.png", style="width:30px; height:30px">
+                    <% end %>
+                </span>
+                <span class="p-1">
+                    <%=link_to new_user_post_path(current_user) do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/3161/3161837.png", style="width:30px; height:30px">
+                    <% end %>
+                </span>
+                <span class="p-1">
+                    <%=link_to   user_reels_path(current_user) do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/12595/12595880.png", style="width:30px; height:30px">
+                    <% end %>
+                </span>
+                <span class="p-1">
+                    <%=link_to user_groups_path(current_user) do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/3721/3721935.png", style="width:30px; height:30px">
+                    <% end %>
+                </span>
+                <span class="p-1">
+                    <%=link_to user_list_path(current_user) do %>
+                        <img src="https://cdn-icons-png.flaticon.com/128/3683/3683218.png", style="width:30px; height:30px">
+                    <% end %>
+                </span>
+            </div> &nbsp; &nbsp;
             <div>
                  <% if current_user.profile_image.attached? %>
                           <%= image_tag(current_user.profile_image, size:"40x40",class:"rounded-circle") if current_user.profile_image.attached?  %>  
-                <% else %>
-                     <% if current_user.gender == "male" %>
+                 <% else %>
+                        <% if current_user.gender == "male" %>
                             <img src="https://cdn-icons-png.flaticon.com/128/4140/4140077.png", style="width:40px; height:40px" >
-                      <% else %>
+                        <% else %>
                             <img src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png", style="width:40px; height:40px" >
-                    <% end %> 
-                <% end %>
+                        <% end %> 
+                  <% end %>
             </div>
             &nbsp;  Logged in as &nbsp;<strong><%= link_to current_user.user_name , user_profile_path(current_user), class:"text-decoration-none text-dark"%></strong>&nbsp;
                 <div class="btn-group dropleft">

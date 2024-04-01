@@ -28,14 +28,14 @@
                         <img src="https://cdn-icons-png.flaticon.com/128/10728/10728089.png", style="width:30px; height:30px" >
                     <% end %>
             </div>
-        <div class="container mb-2 rounded mt-5", style="height:480px; overflow-y: scroll; background-image: linear-gradient(to bottom right, pink, red, pink);"><br>  
+        <div class="container mb-2 rounded mt-5 c", style="height:480px; overflow-y: scroll; background-image: linear-gradient(to bottom right, orange, white, green);"><br>  
             <% @group.messages.each do |message| %>
               <div class="row <%= current_user.id == message.user.id ? 'justify-content-end' : 'justify-content-start' %>" , id="<%= dom_id message %>">
                     <div class="col-6">
                         <div class="bg-white rounded-pill p-3 ">
                             <b><%= image_tag(message.user.profile_image , size:"30x30", class:"rounded-pill") if message.user.profile_image.attached? %><%= message.user.user_name %>
                                 <% if  current_user.id == message.user.id %>
-                                    <%= link_to "delete", user_group_message_path( current_user, @group, message), data:{ turbo_method: :delete} %>
+                                    <%= link_to "Delete", user_group_message_path( current_user, @group, message), data:{ turbo_method: :delete} , class:"btn btn-danger btn-sm py-0"%>
                                 <% end %>
                             </b><br>
                             <%= message.message %>
@@ -45,10 +45,11 @@
                 </div>
                 <br>
             <% end %>
-        </div>
-        <%= render "form" %>
-        <br>
-    </div>
+                </div>
+                <%= render "form" %>
+                <br>
+             </div>
         </div>
     </div>
 </div>
+
