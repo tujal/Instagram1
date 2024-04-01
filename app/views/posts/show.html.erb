@@ -22,7 +22,8 @@
          <small class="text-secondary lh-1">  <%= time_ago_in_words(@post.created_at) %>Ago</small>
          <!--------- like section ------>
          <div class="d-flex" >
-         <%= render partial: 'home/like', locals: { likable: @post} %>
+        <%= render partial: 'home/like', locals: { likable: @post} %>
+      
           <p class="m-2"> <img src="https://cdn-icons-png.flaticon.com/128/5338/5338282.png", style="width:25px; height:25px"><br>
             <%= @post.comments.count %>
             </p>
