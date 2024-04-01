@@ -2,12 +2,12 @@
 <div style= "height:300px; overflow-y: scroll;" >
 <% @post.comments.reverse.each do | comment | %>
 <div id="<%= dom_id comment %>">
+<div class="d-flex ">
         <%= image_tag(comment.user.profile_image, size:"20x20",class:"rounded-circle") if comment.user.profile_image.attached?  %>  <%= comment.user.user_name %><br>
         <% if comment.user_id == current_user.id %>
-            <div class="d-flex">
-                    <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment)%>  <%= button_to "Delete", user_post_comment_path( current_user, @post, comment), method: :delete , class:"btn btn-link ", remote: true%>
-            </div>
+                    <%= link_to "edit",  edit_user_post_comment_path(current_user, @post, comment), class:"btn btn-warning btn-sm py-0"%>  &nbsp; <%= link_to "Delete", user_post_comment_path( current_user, @post, comment), data:{ turbo_method: :delete} ,class:"btn btn-danger btn-sm py-0", remote: true%>
         <% end %>
+        </div>
         <small class="text-secondary"> <%= time_ago_in_words(comment.created_at) %>Ago</small><br>
              <%= comment.comment %>
         <%= render partial: 'home/like', locals: { likable: comment} %>
