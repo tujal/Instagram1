@@ -8,10 +8,7 @@ class UsersController < ApplicationController
     end
 
     def follow
-      # degugger
       current_user.send_follow_request_to(@user)
-      # redirect_to user_list_path(@user)
-      # redirect_to profile_path(@user)
       respond_to do | format |
         format.turbo_stream
       end

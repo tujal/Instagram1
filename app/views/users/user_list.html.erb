@@ -1,7 +1,7 @@
 <%= render "/home/nav" %>
 <div class="container mt-4 w-50  d-flex flex-wrap">
     <% @users.each do | user | %>
-        <% if user != current_user || user.following == current_user || user.followers  == current_user %>
+        <% if user != current_user %>
         <div class="card text-center m-2" style="width:47%">
             <div class=" d-flex justify-content-end p-1">
             <%= link_to root_path do %>
@@ -19,8 +19,8 @@
         <% end %>
         <div class="card-body ">
           <h6 class="card-title"><%= link_to  user.user_name,  user_profile_path(user), class:"text-decoration-none text-dark" %></</h6>
-          <% if current_user.following?(user) %>
-          <%= button_to "Unfollow", unfollow_path(user) , class:"btn btn-success mt-3 w-75 unfollow_btn", remote: true, data: { action: 'unfollow', user_id: @user.id }%>
+            <% if current_user.following?(user) %>
+                <%= button_to "Unfollow", unfollow_path(user) , class:"btn btn-success mt-3 w-75 unfollow_btn", remote: true, data: { action: 'unfollow', user_id: @user.id }%>
             <% elsif current_user.sent_follow_request_to?(user) %>
                 <%= button_to "Cancel", cancel_path(user) , class:"btn btn-danger mt-3 w-75 cancel_btn ", remote: true, data: { action: 'cancel', user_id: @user.id }%>
             <% else %>
@@ -31,27 +31,5 @@
      <% end %>
       <% end %>  
 </div>
-<script>
-$(document).ready(function(){
-    $('.follow-btn').on('click', function(e){
-        e.preventDefault();
-        var userId = $(this).data('user_id');
-        var action = $(this).data('action');
-        console.log(userId);
-        $.ajax({
-            url: '/users/'+ userId + '/' + action,
-            method: 'POST',
-            dataType: 'script',
-            success: function(response){
-                $(this).text('follow').data('action', 'follow');
-            },
-            error: function(xhr, status, error){
-                console.error(error);
-            }
-        });
-    });
-});
-
-</script>
 </body>
 </html>

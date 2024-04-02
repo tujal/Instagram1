@@ -51,9 +51,12 @@
                     Account
                 </button>
                     <div class="dropdown-menu mt-5">
-                    <%= link_to "Request",  request_path(current_user), class:"dropdown-item" %>
+                         <% if current_user.follow_requests.present? %>
+                        <div class="dropdown-item">  <%= link_to "Request",  request_path(current_user), class:"text-decoration-none text-dark" %> <sup class="text-white bg-danger rounded-circle p-1"> <%= current_user.follow_requests.count %></sup></div>
+                         <% else %>
+                             <%= link_to "Request",  request_path(current_user), class:"dropdown-item" %>
+                        <% end %>
                     <%= link_to "Notes",user_notes_path(current_user), class:"dropdown-item" %>
-
                      <%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %>
                         <div class="dropdown-divider"></div>
                         <%= button_to "Logout", destroy_user_session_path, method: :delete , class:"dropdown-item"  %>
