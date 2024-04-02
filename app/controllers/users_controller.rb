@@ -8,9 +8,13 @@ class UsersController < ApplicationController
     end
 
     def follow
+      # degugger
       current_user.send_follow_request_to(@user)
       # redirect_to user_list_path(@user)
       # redirect_to profile_path(@user)
+      respond_to do | format |
+        format.turbo_stream
+      end
     end
   
     def unfollow
@@ -34,6 +38,11 @@ class UsersController < ApplicationController
       current_user.decline_follow_request_of(@user)
       # redirect_to root_path
     end
+
+    def user_post
+      @posts = current_user.posts.all
+      render 'user_post'
+    end
   
     def user_list
       @users = User.all
@@ -56,8 +65,7 @@ class UsersController < ApplicationController
     end
   
     def make_it_a_unfriend_request
-      @user.unfollow(current_user) if@user.mutual_following_with?(current_user)
-  
+      @user.unfollow(current_user) if @user.mutual_following_with?(current_user)
     end
     def set_user
       @user = User.find(params[:id])

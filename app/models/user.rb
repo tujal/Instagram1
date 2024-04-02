@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  attr_writer :login
   followability
+  attr_writer :login
+
   PASSWORD_REQUIREMENTS = /\A 
   (?=.{8,})
   (?=.*\d)
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   (?=.*[A-Z])
   (?=.*[[:^alnum:]])
   /x
-  validates :password,format: PASSWORD_REQUIREMENTS, on: :account_setup
+  validates :password,format: PASSWORD_REQUIREMENTS
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
@@ -26,6 +27,7 @@ class User < ApplicationRecord
   def unfollow(user)
     followerable_relationships.where(followable_id: user.id).destroy_all
   end
+  
   def login
     @login || user_name || email
   end

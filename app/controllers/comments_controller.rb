@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
         @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
         @comment.destroy
-          respond_to do | format |
+        respond_to do | format |
               format.turbo_stream { render turbo_stream: turbo_stream.remove("comment_#{@comment.id}")}
               format.html { redirect_to user_post_path( current_user, @post)}
         end

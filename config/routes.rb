@@ -32,5 +32,6 @@ Rails.application.routes.draw do
     get 'users/:id/request_page', to: 'users#request_page', as: 'request'
     get 'users/:id/following', to: 'users#following', as: 'following'
     get 'users/:id/followers', to: 'users#followers', as: 'followers'
+    get 'users/:id/user_post', to: "users#user_post", as: 'user_postss'
     get '/search', to: "posts#search"    
 end

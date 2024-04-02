@@ -29,15 +29,15 @@
         </div>
         <div class="col-8 d-flex text-center h-50 mt-5">
             <div class="col-4 ">
-                <h1 > <%= @user.posts.count %></h1>
+                <h1 > <%= link_to  @user.posts.count , user_postss_path, class:"text-decoration-none text-dark"%></h1>
                 <h4 class="fw-normal"> <%= (@user.posts.count) == 1 ? 'Post' : 'Posts'%></h4>
             </div>
             <div class="col-4">
-                <h1> <%= link_to  @user.followers.count , followers_path(@user)%></h1>
+                <h1> <%= link_to  @user.followers.count , followers_path(@user), class:"text-decoration-none text-dark"%></h1>
                 <h4 class="fw-normal"> <%= (@user.followers.count) == 1 ? 'Follower' : 'Followers'%></h4>
             </div>
             <div class="col-4">
-                <h1><%= link_to @user.following.count,  following_path(@user)%></h1>
+                <h1><%= link_to @user.following.count,  following_path(@user), class:"text-decoration-none text-dark"%></h1>
                 <h4 class="fw-normal"> <%= (@user.following.count) == 1 ? 'Following' : 'Followings'%></h4>
             </div>    
         </div>  

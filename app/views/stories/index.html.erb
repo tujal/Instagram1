@@ -9,12 +9,11 @@
             <div>
                 <%= video_tag(story.story ,size:"350x500" ,controls: true) if story.story.attached? %>&nbsp;
                 <div class="d-flex">
-                <%= image_tag(story.user.profile_image , size:"40x40" , class:"rounded-circle") if story.user.profile_image.attached? %>&nbsp;&nbsp;<b class="pt-1"><%= story.user.user_name %></b>&nbsp;&nbsp;
+                <%= image_tag(story.user.profile_image , size:"40x40" , class:"rounded-circle") if story.user.profile_image.attached? %>&nbsp;&nbsp;<b class="pt-1"><%= link_to story.user.user_name, user_profile_path(story.user.id), class:"text-decoration-none text-dark" %></b>&nbsp;&nbsp;
                 <% if current_user.id == story.user_id %>
                 <%= button_to "Delete",  user_story_path(current_user, story), method: :delete, class:"btn btn-danger btn-sm" %>
                 <% end %>
                 </div>
-                
                 <small class="text-secondary"><%= time_ago_in_words(story.created_at) %>Ago</small>
                 <%= render partial: 'home/like', locals: { likable: story} %>
             </div>
