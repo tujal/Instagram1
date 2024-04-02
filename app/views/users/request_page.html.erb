@@ -1,21 +1,21 @@
 <%= render "/home/nav" %>
 <% if @requests.present? %>
-<div class='container bg-white w-50 mt-4'>
-<div class="float-end p-2">
-    <%= link_to root_path do %>
-        <img src="https://cdn-icons-png.flaticon.com/128/271/271203.png", style="width:25px; height:25px" >
-    <% end %>
-</div>
-    <table class="table">
-        <% @requests.each do | request | %>
-            <tr>
-                <td> <b><%= image_tag(request.followerable.profile_image, size:"45x45", class:"rounded-circle") if request.followerable.profile_image.attached? %> <%= request.followerable.email %><b></td>
-                <td><%= button_to "Accept", accept_path(request.followerable), class:"btn btn-outline-success btn-sm" %></td>
-                <td><%= button_to "Decline",decline_path(request.followerable), class:"btn btn-outline-danger btn-sm" %></td>
-            </tr>
+    <div class='container bg-white w-50 mt-4'>
+    <div class="float-end p-2">
+        <%= link_to root_path do %>
+            <img src="https://cdn-icons-png.flaticon.com/128/271/271203.png", style="width:25px; height:25px" >
         <% end %>
-    <table>
-</div>
+    </div>
+        <table class="table">
+            <% @requests.each do | request | %>
+                <tr>
+                    <td> <b><%= image_tag(request.followerable.profile_image, size:"45x45", class:"rounded-circle") if request.followerable.profile_image.attached? %> <%= request.followerable.email %><b></td>
+                    <td><%= button_to "Accept", accept_path(request.followerable), class:"btn btn-outline-success btn-sm" %></td>
+                    <td><%= button_to "Decline",decline_path(request.followerable), class:"btn btn-outline-danger btn-sm" %></td>
+                </tr>
+            <% end %>
+        <table>
+    </div>
 <% else %>
         <h2 class="text-center mt-4"> There is No request <h2>
 <% end %>

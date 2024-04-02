@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
 
     def user_post
-      @posts = current_user.posts.all
+      @posts = @user.posts.all
       render 'user_post'
     end
   
