@@ -1,6 +1,60 @@
 <%= render "home/nav" %>
+<% @@id = current_user.following.pluck(:id).include?(@user.id) %>
+<% if  @@id == false && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
 <div class="container mt-5 bg-white w-50" style="border-radius: 20px">
-    
+    <div class="rows d-flex">
+        <div class="col-4 p-4">
+        <% if @user.stories.present? %>
+            <div class="outer-circle">
+                <div class="inner-circle">
+                <%= image_tag(@user.profile_image, size:"210x210" , class:"rounded-circle") if @user.profile_image.attached? %>
+                </div>
+            </div>
+        <% else %>
+        <% if @user.profile_image.attached? %>
+            <%= link_to rails_blob_path(@user.profile_image, disposition: "preview") do %>
+            <%= image_tag(@user.profile_image, size:"200x200" , class:"rounded-circle border border-3 border-success ") if @user.profile_image.attached? %>
+            <% end %>
+            <% else %>
+            <% if @user.gender == "male" %>
+                <img src="https://cdn-icons-png.flaticon.com/128/4140/4140077.png", style="width:200px; height:200px" >
+            <% else %>
+                <img src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png", style="width:200px; height:200px" >
+            <% end %> 
+            <% end %>
+        <% end %>
+                <h4 class="mt-1"> <%= @user.user_name %></h4>
+                <p><%= @user.bio %></p>
+        </div>
+        <div class="col-8 d-flex text-center h-50 mt-5">
+            <div class="col-4 ">
+                <h1> <%= @user.posts.count%></h1>
+                <h4 class="fw-normal"> <%= (@user.posts.count) == 1 ? 'Post' : 'Posts'%></h4>
+            </div>
+            <div class="col-4">
+                <h1> <%=   @user.followers.count%></h1>
+                <h4 class="fw-normal"> <%= (@user.followers.count) == 1 ? 'Follower' : 'Followers'%></h4>
+            </div>
+            <div class="col-4">
+                <h1><%= @user.following.count %></h1>
+                <h4 class="fw-normal"> <%= (@user.following.count) == 1 ? 'Following' : 'Followings'%></h4>
+            </div>    
+        </div>  
+     </div>
+
+                <% if current_user.following?(@user) %>
+                <%= button_to "Unfollow", unfollow_path(@user), class:"btn btn-success w-50" %>
+                <% elsif current_user.sent_follow_request_to?(@user) %>
+                <%= button_to "Cancel follow request", cancel_path(@user), class:"btn btn-danger w-50" %>
+                <% else %>
+                <% if current_user != @user %>
+                <%= button_to "Follow", follow_path(@user) , class:"btn btn-primary w-50"%>
+                <% end %>
+                <% end %>
+                <br>
+</div>
+<% else %>
+<div class="container mt-5 bg-white w-50" style="border-radius: 20px">
     <div class="rows d-flex">
         <div class="col-4 p-4">
         <% if @user.stories.present? %>
@@ -54,6 +108,23 @@
                 <% end %>
                 <br>
 </div>
+<% end %>
+
+<!---------- private message section ------------>
 
 
+<% if  @@id == false && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
+    <div class="container mt-2 bg-white w-50" ,style="border-radius: 20px">
+        <div class="row">
+            <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="text-center"><img src="https://cdn-icons-png.flaticon.com/128/11041/11041389.png", style="width:60px; height:60px" ></div>
+                </div>
+                <div class="col-8">
+                    <p class="font-weight-bold"> This Account is Private<br>
+                    <span class="text-secondary"> Follow this account to see their photos and videos<span></p>
+                </div>
+        </div>
+    </div>
+<% end %>
 
