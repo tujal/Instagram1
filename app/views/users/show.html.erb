@@ -1,6 +1,6 @@
 <%= render "home/nav" %>
 <% @@id = current_user.following.pluck(:id).include?(@user.id) %>
-<% if  @@id == false && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
+<% if  @@id != true && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
 <div class="container mt-5 bg-white w-50" style="border-radius: 20px">
     <div class="rows d-flex">
         <div class="col-4 p-4">
@@ -113,7 +113,7 @@
 <!---------- private message section ------------>
 
 
-<% if  @@id == false && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
+<% if  @@id != true && @user.following.pluck(:id) != current_user.id  && current_user.id != @user.id &&  @user.private == true  %>
     <div class="container mt-2 bg-white w-50" ,style="border-radius: 20px">
         <div class="row">
             <div class="col-2"></div>
